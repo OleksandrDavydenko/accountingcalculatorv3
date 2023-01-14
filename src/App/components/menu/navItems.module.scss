@@ -1,0 +1,19 @@
+.nav_container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.nav_element {
+  margin-top: 25px;
+  margin-left: 10px;
+}
+.nav_item {
+  font-size: 2rem;
+  color: #282c34;
+  font-weight: 500;
+}
+.nav_container.close {
+  visibility: hidden;
+  transition: visibility 0.2s;
+}

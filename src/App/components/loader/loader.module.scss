@@ -1,0 +1,29 @@
+.loader_conteiner {
+  height: 100px;
+  width: 200px;
+  margin-top: 20vh;
+}
+
+.App-logo {
+  margin-left: 100px;
+  margin-right: 15px;
+  height: 6vmin;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    //использовать для кручения
+    animation: App-logo-spin infinite 0.5s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

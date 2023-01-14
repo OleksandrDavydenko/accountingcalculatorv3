@@ -1,0 +1,15 @@
+.hamburger {
+  /* border: solid 1px white; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border-radius: 5px; */
+  cursor: pointer;
+}
+.stick {
+  width: 40px;
+  background-color: #282c34;
+  height: 4px;
+  margin-top: 8px;
+}
