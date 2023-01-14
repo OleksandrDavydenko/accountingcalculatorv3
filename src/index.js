@@ -33,8 +33,7 @@ ReactDOM.render(
         firestore,
       }}
     >
-      {/* <App /> */}
-      <div>HELLO</div>
+      <App />
     </Context.Provider>
   </React.StrictMode>,
   document.getElementById("root")
