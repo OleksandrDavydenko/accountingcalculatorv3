@@ -29,6 +29,14 @@ export const NavItems = () => {
                 >Розрахунок оренди МСФЗ
                 </NavLink>
             </li>
+            <li className={classes.nav_element}>
+                <NavLink 
+                    className={classes.nav_item} 
+                    exact={true} 
+                    to="/currencies"
+                >Курс валют НБУ
+                </NavLink>
+            </li>
         </ul>
     )
 } 

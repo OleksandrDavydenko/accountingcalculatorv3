@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import ReactDOM from "react-dom";
+import { QueryClientProvider, QueryClient } from "react-query";
 import "./index.css";
 import App from "./App/App";
 import reportWebVitals from "./reportWebVitals";
@@ -20,22 +21,25 @@ firebase.initializeApp({
 });
 
 export const Context = createContext(null);
+const queryClient = new QueryClient();
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Context.Provider
-      value={{
-        firebase,
-        auth,
-        firestore,
-      }}
-    >
-      <App />
-    </Context.Provider>
-  </React.StrictMode>,
+  <QueryClientProvider client={queryClient}>
+    <React.StrictMode>
+      <Context.Provider
+        value={{
+          firebase,
+          auth,
+          firestore,
+        }}
+      >
+        <App />
+      </Context.Provider>
+    </React.StrictMode>
+  </QueryClientProvider>,
   document.getElementById("root")
 );
 
