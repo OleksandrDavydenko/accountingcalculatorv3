@@ -22,6 +22,7 @@ export const CurrenciesExchanges = ({ currenciesData }) => {
         
     return (
         <div className="converter_wrapper">
+            <input type="date"/>
             <div className="converter_block">
                 <select
                     className="converter_select"
