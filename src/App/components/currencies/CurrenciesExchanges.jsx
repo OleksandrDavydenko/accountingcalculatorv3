@@ -9,8 +9,11 @@ function checkSum(activeInput, activeCurrencySecond, activeCurrencyFirst) {
 
 let today = new Date().toISOString().split("T")[0];
 
+<<<<<<< HEAD
 console.log(today);
 
+=======
+>>>>>>> d4b57e1 (fixed problem with versions sass)
 export const CurrenciesExchanges = ({ currenciesData }) => {
   const [date, setDate] = useState(today);
   console.log(date);
