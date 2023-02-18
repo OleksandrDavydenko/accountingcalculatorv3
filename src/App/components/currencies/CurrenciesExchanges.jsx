@@ -12,8 +12,8 @@ let today = new Date().toISOString().split("T")[0];
 console.log(today);
 
 export const CurrenciesExchanges = ({ currenciesData }) => {
-  const [date, setDate] = useState(today);
-  console.log(date);
+  /*   const [date, setDate] = useState(today);
+  console.log(date); */
   const [activeCurrencyFirst, setActiveCurrencyFirst] = useState(
     currenciesData[0].rate
   );
@@ -41,7 +41,7 @@ export const CurrenciesExchanges = ({ currenciesData }) => {
 
   return (
     <div className="converter_wrapper">
-      <input type="date" defaultValue={date} />
+      <input type="date" defaultValue={"date"} />
       <div className="converter_block">
         <select
           className="converter_select"
