@@ -1,65 +1,85 @@
-import React, {useState} from "react";
-import './CurrenciesExchanges.css';
+import React, { useState } from "react";
+import "./CurrenciesExchanges.css";
 
 function checkSum(activeInput, activeCurrencySecond, activeCurrencyFirst) {
-    return ((activeInput * activeCurrencySecond) / activeCurrencyFirst).toFixed(4);
+  return ((activeInput * activeCurrencySecond) / activeCurrencyFirst).toFixed(
+    4
+  );
 }
+
+let today = new Date().toISOString().split("T")[0];
+
+console.log(today);
 
 export const CurrenciesExchanges = ({ currenciesData }) => {
+  const [date, setDate] = useState(today);
+  console.log(date);
+  const [activeCurrencyFirst, setActiveCurrencyFirst] = useState(
+    currenciesData[0].rate
+  );
+  const [activeCurrencySecond, setActiveCurrencySecond] = useState(
+    currenciesData[0].rate
+  );
+  const [firstInput, setFirstInput] = useState();
+  const [secondInput, setSecondInput] = useState();
+  const [activeInput, setActiveInput] = useState(1);
 
-    const [activeCurrencyFirst, setActiveCurrencyFirst] = useState(currenciesData[0].rate);
-    const [activeCurrencySecond, setActiveCurrencySecond] = useState(currenciesData[0].rate);
-    const [firstInput, setFirstInput] = useState();
-    const [secondInput, setSecondInput] = useState();
-    const [activeInput, setActiveInput] = useState(1);
+  const currenciesOptions = currenciesData.map((currency) => (
+    <option key={currency.r030} value={currency.rate}>
+      {currency.cc + " " + currency.txt}
+    </option>
+  ));
 
-    const currenciesOptions = currenciesData.map((currency) => (
-        <option key={currency.r030} value={currency.rate}>{currency.cc + " " + currency.txt}</option>
-    ));
+  const calcFInput =
+    activeInput === 1
+      ? firstInput
+      : checkSum(secondInput, activeCurrencySecond, activeCurrencyFirst);
+  const calcSInput =
+    activeInput === 2
+      ? secondInput
+      : checkSum(firstInput, activeCurrencyFirst, activeCurrencySecond);
 
-    const calcFInput = activeInput === 1 ? firstInput : checkSum(secondInput, activeCurrencySecond, activeCurrencyFirst);
-    const calcSInput = activeInput === 2 ? secondInput : checkSum(firstInput, activeCurrencyFirst, activeCurrencySecond);
-        
-    return (
-        <div className="converter_wrapper">
-            <input type="date"/>
-            <div className="converter_block">
-                <select
-                    className="converter_select"
-                    onChange={e => {
-                        setActiveCurrencyFirst(e.target.value);
-                }}>
-                    {currenciesOptions}
-                </select>
-                <input
-                    className="input_view"
-                    type="number"
-                    value={calcFInput || ""}
-                    onChange={e => {
-                        setFirstInput(e.target.value);
-                        setActiveInput(1);
-                    }}
-                />
-            </div>
-            <div className="converter_block">
-                <select
-                    className="converter_select"
-                    onChange={e => {
-                        setActiveCurrencySecond(e.target.value)
-                }}>
-                    {currenciesOptions}
-                </select>
-                <input
-                    className="input_view"
-                    type="number"
-                    value={calcSInput || ""}
-                    onChange={e => {
-                        setSecondInput(e.target.value);
-                        setActiveInput(2);
-                    }}
-                />
-
-            </div>
-        </div>
-    )
-}
+  return (
+    <div className="converter_wrapper">
+      <input type="date" defaultValue={date} />
+      <div className="converter_block">
+        <select
+          className="converter_select"
+          onChange={(e) => {
+            setActiveCurrencyFirst(e.target.value);
+          }}
+        >
+          {currenciesOptions}
+        </select>
+        <input
+          className="input_view"
+          type="number"
+          value={calcFInput || ""}
+          onChange={(e) => {
+            setFirstInput(e.target.value);
+            setActiveInput(1);
+          }}
+        />
+      </div>
+      <div className="converter_block">
+        <select
+          className="converter_select"
+          onChange={(e) => {
+            setActiveCurrencySecond(e.target.value);
+          }}
+        >
+          {currenciesOptions}
+        </select>
+        <input
+          className="input_view"
+          type="number"
+          value={calcSInput || ""}
+          onChange={(e) => {
+            setSecondInput(e.target.value);
+            setActiveInput(2);
+          }}
+        />
+      </div>
+    </div>
+  );
+};
