@@ -44,6 +44,21 @@
   width: 100%;
   margin-top: 15px;
 }
+.title_convertetion{
+  font-size: 20px;
+  margin-right: 20px;
+}
+.input_date{
+    margin-right: 15px;
+      height: 40px;
+      border-bottom: 1px solid #282c34;
+      font-size: 20px;
+      outline: none;
+      color: #282c34;
+      /*   box-shadow: 1px 1px 2px 1px grey;
+      border-radius: 5px; */
+      margin-bottom: 0px;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

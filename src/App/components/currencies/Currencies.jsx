@@ -2,11 +2,18 @@ import React, { useState } from "react";
 import { useCurrenciesData } from "../../utils/hooks/useCurrenciesData";
 import { Loader } from "../loader/Loader";
 import { CurrenciesExchanges } from "./CurrenciesExchanges";
-import './CurrenciesExchanges.css';
+import "./CurrenciesExchanges.css";
 
+const today = new Date().toISOString().split("T")[0];
 
 export const Currencies = () => {
-    const [currencies, setCurrensies] = useState();
+  const [date, setDate] = useState(today);
+
+  const [currencies, setCurrensies] = useState();
+  //'бумеранг', получаю значение со стейта з дочірнього елемента.
+  const changedData = (dateFromInput) => {
+    setDate(dateFromInput);
+  };
 
   const onSuccess = (data) => {
     function SortArray(x, y) {
@@ -26,6 +33,7 @@ export const Currencies = () => {
   };
 
   const { isLoading, isError, error, isFetching } = useCurrenciesData(
+    date,
     onSuccess,
     onError
   );
@@ -36,11 +44,15 @@ export const Currencies = () => {
 
   return (
     <div className="currencies_wrapp">
-        {isLoading || isFetching || !currencies ? (
-          <Loader />
-        ) : (
-          <CurrenciesExchanges currenciesData={currencies} />
-        )}
+      {isLoading || isFetching || !currencies ? (
+        <Loader />
+      ) : (
+        <CurrenciesExchanges
+          currenciesData={currencies}
+          changeData={(date) => changedData(date)}
+          date={date}
+        />
+      )}
     </div>
   );
-} 
+};
