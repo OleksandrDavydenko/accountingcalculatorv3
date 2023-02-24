@@ -7,13 +7,7 @@ function checkSum(activeInput, activeCurrencySecond, activeCurrencyFirst) {
   );
 }
 
-let today = new Date().toISOString().split("T")[0];
-
-console.log(today);
-
-export const CurrenciesExchanges = ({ currenciesData }) => {
-  /*   const [date, setDate] = useState(today);
-  console.log(date); */
+export const CurrenciesExchanges = ({ currenciesData, changeData, date }) => {
   const [activeCurrencyFirst, setActiveCurrencyFirst] = useState(
     currenciesData[0].rate
   );
@@ -23,6 +17,10 @@ export const CurrenciesExchanges = ({ currenciesData }) => {
   const [firstInput, setFirstInput] = useState();
   const [secondInput, setSecondInput] = useState();
   const [activeInput, setActiveInput] = useState(1);
+
+  /* const [selectedDate, setSelectedDate] = useState('') */
+
+  console.log(date);
 
   const currenciesOptions = currenciesData.map((currency) => (
     <option key={currency.r030} value={currency.rate}>
@@ -41,7 +39,15 @@ export const CurrenciesExchanges = ({ currenciesData }) => {
 
   return (
     <div className="converter_wrapper">
-      <input type="date" defaultValue={"date"} />
+      <div className="converter_block">
+        <span className="title_convertetion">Оберіть дату конвертації:</span>
+        <input
+          className="input_date"
+          type="date"
+          value={date}
+          onChange={(e) => changeData(e.target.value)}
+        />
+      </div>
       <div className="converter_block">
         <select
           className="converter_select"
