@@ -27,7 +27,7 @@ export const Menu = () => {
         </div>
       </div>
       <NavItems toggleState={toggle} />
-      <p className={classes.version}>Version 1.0.1</p>
+      <p className={classes.version}>Version 1.0.2</p>
     </div>
   );
 };
