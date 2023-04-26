@@ -5,16 +5,13 @@ import { convert } from "number-to-cyrillic";
 export const NumberToWords = () => {
   const [number, setNumber] = useState("");
   const [words, setWords] = useState("");
+  const [language, setLanguage] = useState("uk");
 
   const handleInputChange = (e) => {
-    setNumber(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let numberWords = convert(number);
-    console.log(numberWords);
-    numberWords =
+    const newNumber = e.target.value;
+    setNumber(newNumber);
+    const numberWords = convert(newNumber, { language });
+    const newWords =
       numberWords.convertedInteger +
       " " +
       numberWords.integerCurrency +
@@ -22,13 +19,27 @@ export const NumberToWords = () => {
       numberWords.fractionalString +
       " " +
       numberWords.fractionalCurrency;
-    setWords(numberWords);
+    setWords(newWords);
+  };
+
+  const handleLanguageChange = (e) => {
+    setLanguage(e.target.value);
+    const numberWords = convert(number, { language: e.target.value });
+    const newWords =
+      numberWords.convertedInteger +
+      " " +
+      numberWords.integerCurrency +
+      " " +
+      numberWords.fractionalString +
+      " " +
+      numberWords.fractionalCurrency;
+    setWords(newWords);
   };
 
   return (
     <div className="container">
       <h1>Сума прописом</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label>
           Введіть число:
           <input
@@ -36,13 +47,32 @@ export const NumberToWords = () => {
             className="input_prop"
             value={number}
             onChange={handleInputChange}
+            placeholder="0.00"
           />
         </label>
-        <button className="button_prop" type="submit">
-          Обчислити
-        </button>
       </form>
-      <div className="result">{typeof words === "string" ? words : ""}</div>
+      <div className="language-switch">
+        <span>Мова: </span>
+        <label>
+          <input
+            type="radio"
+            value="uk"
+            checked={language === "uk"}
+            onChange={handleLanguageChange}
+          />
+          Українська
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="en"
+            checked={language === "en"}
+            onChange={handleLanguageChange}
+          />
+          Англійська
+        </label>
+      </div>
+      <div className="result">{words}</div>
     </div>
   );
 };
