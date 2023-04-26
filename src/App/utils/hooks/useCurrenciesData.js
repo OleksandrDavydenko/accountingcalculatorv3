@@ -2,8 +2,6 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 const fetchCurrenciesData = async (date) => {
-  console.log(date);
-
   //функція, яка змінює формат дати для API
 
   function formatDate(date) {
