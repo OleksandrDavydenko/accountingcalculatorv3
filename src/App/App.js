@@ -1,35 +1,32 @@
-import React, { useContext } from "react";
-import { BrowserRouter } from 'react-router-dom';
-import classes from'./App.module.scss';
-import { Header } from './components/header/Header'
-import { Menu } from './components/menu/Menu'
-import { AppRouter } from './components/AppRouter';
-import {Context} from '../index';
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { Loader } from './components/loader/Loader';
-
+import React, { useContext, useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
+import classes from "./App.module.scss";
+import { Header } from "./components/header/Header";
+import { Menu } from "./components/menu/Menu";
+import { AppRouter } from "./components/AppRouter";
+import { Context } from "../index";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Loader } from "./components/loader/Loader";
 
 function App() {
+  useEffect(() => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.alert("Цей сайт не має мобільної версії!");
+    }
+  }, []);
 
-    const {auth} = useContext(Context)
-    // eslint-disable-next-line
-    const [user, loading, error] = useAuthState(auth)
-    
-
+  const { auth } = useContext(Context);
+  // eslint-disable-next-line
+  const [user, loading, error] = useAuthState(auth);
 
   return (
-     <BrowserRouter>
+    <BrowserRouter>
       <div className={classes.App}>
-        <Header/>
+        <Header />
         <section>
           <Menu />
-          <main>
-            {loading ?
-                        <Loader/>
-                        :
-                        <AppRouter/>
-            }
-          </main>
+          <main>{loading ? <Loader /> : <AppRouter />}</main>
         </section>
       </div>
     </BrowserRouter>
