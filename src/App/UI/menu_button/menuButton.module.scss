@@ -1,15 +1,29 @@
 .hamburger {
-  /* border: solid 1px white; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border-radius: 5px; */
   cursor: pointer;
-}
-.stick {
-  width: 40px;
-  background-color: #282c34;
-  height: 4px;
-  margin-top: 8px;
+
+  .stick {
+    width: 40px;
+    background-color: #282c34;
+    height: 4px;
+    margin-top: 8px;
+    transition: all 0.2s ease-out;
+  }
+
+  &.active {
+    .stick:first-child {
+      transform: translateY(12px) rotate(45deg);
+    }
+
+    .stick:nth-child(2) {
+      opacity: 0;
+    }
+
+    .stick:last-child {
+      transform: translateY(-12px) rotate(-45deg);
+    }
+  }
 }
