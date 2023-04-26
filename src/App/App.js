@@ -9,12 +9,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Loader } from "./components/loader/Loader";
 
 function App() {
+  //Повідомлення про відсутність мобільної версії
   useEffect(() => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
       window.alert("Цей сайт не має мобільної версії!");
     }
   }, []);
+  ///////////////////////////////////////////////////////////////////
 
   const { auth } = useContext(Context);
   // eslint-disable-next-line

@@ -12,8 +12,12 @@
   font-size: 2rem;
   color: #282c34;
   font-weight: 500;
+  white-space: nowrap;
 }
 .nav_container.close {
   visibility: hidden;
   transition: visibility 0.2s;
+}
+.nav_item:hover {
+  text-decoration-line: underline;
 }

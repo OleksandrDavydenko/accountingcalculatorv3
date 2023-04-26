@@ -12,7 +12,7 @@
   box-shadow: 1px 1px 2px 1px grey;
   padding-top: 10px;
   transition: margin-left 1s;
-  background-color: #f2f2f2;
+/*   background-color: #f2f2f2; */
 }
 .menu_container.close {
   margin-left: -350px;
@@ -38,4 +38,12 @@
   right: 0px;
   width: 70px;
   height: 50px;
+}
+.version {
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+  font-size: 14px;
+  color: #999999;
+  margin: 10px 0;
 }
