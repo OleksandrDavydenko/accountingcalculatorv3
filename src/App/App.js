@@ -15,7 +15,8 @@ function App() {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
       //window.alert("Цей сайт не має мобільної версії!");
-      <MobileErrorMessage />;
+
+      return <MobileErrorMessage />;
     }
   }, []);
   ///////////////////////////////////////////////////////////////////
