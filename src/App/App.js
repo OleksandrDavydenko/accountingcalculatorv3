@@ -13,21 +13,21 @@ function App() {
   const { auth } = useContext(Context);
   // eslint-disable-next-line
   const [user, loading, error] = useAuthState(auth);
-  const [showMobileErrorMessage, setShowMobileErrorMessage] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   //Повідомлення про відсутність мобільної версії
   useEffect(() => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (isMobile) {
-      setShowMobileErrorMessage(true);
-    }
+    setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
   }, []);
   ///////////////////////////////////////////////////////////////////
+
+  if (isMobile) {
+    return <MobileErrorMessage />;
+  }
 
   return (
     <BrowserRouter>
       <div className={classes.App}>
-        {showMobileErrorMessage && <MobileErrorMessage />}
         <Header />
         <section>
           <Menu />
