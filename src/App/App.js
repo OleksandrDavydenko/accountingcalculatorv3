@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
-      //window.alert("Цей сайт не має мобільної версії!");
+      window.alert("Цей сайт не має мобільної версії!");
 
       return <MobileErrorMessage />;
     }
