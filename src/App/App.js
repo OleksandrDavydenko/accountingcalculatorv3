@@ -27,13 +27,11 @@ function App() {
   return (
     <BrowserRouter>
       <div className={classes.App}>
+        {showMobileErrorMessage && <MobileErrorMessage />}
         <Header />
         <section>
           <Menu />
-          <main>
-            {loading ? <Loader /> : <AppRouter />}
-            {showMobileErrorMessage && <MobileErrorMessage />}
-          </main>
+          <main>{loading ? <Loader /> : <AppRouter />}</main>
         </section>
       </div>
     </BrowserRouter>
