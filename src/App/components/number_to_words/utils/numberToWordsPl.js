@@ -79,13 +79,13 @@ export const convertNumberToWordsPL = (number) => {
   }
 
   if (pennies > 0) {
-    penniesWords += convertThreeDigits(pennies) + ' ' + (pennies === 1 ? 'grosz' : (pennies < 5 ? 'grosze' : 'groszy'));
+    penniesWords += pennies < 10 ? '0' + pennies : pennies;
   } else {
-    penniesWords = '00 groszy' + (rublesWords ? ' ' : '');
+    penniesWords = '00';
   }
 
   result += rublesWords + (rublesWords !== '' ? 'złotych ' : '');
-  result += penniesWords !== '' ? 'i ' + penniesWords : '';
+  result += penniesWords !== '' ? 'i ' + penniesWords + ' groszy' : '';
 
   return isNegative ? 'minus ' + result : result;
 };
