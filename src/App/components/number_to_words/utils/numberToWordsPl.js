@@ -39,11 +39,11 @@ export const convertNumberToWordsPL = (number) => {
   const numAbs = Math.abs(num);
 
   if (isNaN(numAbs) || numAbs >= 1e12) {
-    return 'zero groszy';
+    return 'złotych i 00 groszy';
   }
 
   if (numAbs === 0) {
-    return 'zero';
+    return 'złotych i 00 groszy';
   }
 
   let numString = numAbs.toFixed(2).toString();
